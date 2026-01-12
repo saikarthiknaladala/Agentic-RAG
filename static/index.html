@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic RAG System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Agentic RAG System</h1>
+            <p class="subtitle">Intelligent Knowledge Base with Advanced Retrieval</p>
+            <div class="status-bar">
+                <span id="status-indicator" class="status-dot"></span>
+                <span id="status-text">Checking connection...</span>
+                <span class="separator">|</span>
+                <span id="doc-count">0 documents</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar for Document Management -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h2>Document Management</h2>
+
+                    <!-- File Upload -->
+                    <div class="upload-section">
+                        <label for="file-input" class="upload-label">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            Upload PDFs
+                        </label>
+                        <input type="file" id="file-input" accept=".pdf" multiple hidden>
+                    </div>
+
+                    <div id="file-list" class="file-list"></div>
+
+                    <button id="ingest-btn" class="btn btn-primary" disabled>
+                        Ingest Documents
+                    </button>
+
+                    <!-- Clear Database -->
+                    <button id="clear-btn" class="btn btn-danger">
+                        Clear Knowledge Base
+                    </button>
+
+                    <!-- Statistics -->
+                    <div class="stats" id="stats-section">
+                        <h3>Statistics</h3>
+                        <div id="stats-content">
+                            <p>No documents loaded</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Chat Interface -->
+            <main class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="welcome-message">
+                        <h2>Welcome to the Agentic RAG System</h2>
+                        <p>Upload PDF documents to get started, then ask questions about them!</p>
+                        <div class="features">
+                            <div class="feature">
+                                <span class="feature-icon">🔍</span>
+                                <span>Hybrid Search (Semantic + Keyword)</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">🎯</span>
+                                <span>Intent Detection</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">✅</span>
+                                <span>Hallucination Detection</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">📚</span>
+                                <span>Citation Support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="input-container">
+                    <div class="input-wrapper">
+                        <textarea
+                            id="query-input"
+                            placeholder="Ask a question about your documents..."
+                            rows="1"
+                        ></textarea>
+                        <button id="send-btn" class="send-btn" disabled>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="input-options">
+                        <label>
+                            Top K:
+                            <input type="number" id="top-k" value="5" min="1" max="20">
+                        </label>
+                        <label>
+                            Similarity Threshold:
+                            <input type="number" id="threshold" value="0.3" min="0" max="1" step="0.1">
+                        </label>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
